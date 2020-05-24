@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 
-df = pd.read_csv("datasets/train.csv", index_col=0)
+#df = pd.read_csv("datasets/train.csv", index_col=0)
+df = pd.read_csv("datasets/test.csv", index_col=0)
 
 # female = 2, male = 1
 df["Sex"] = np.where(df.Sex == 'male', 1, 2)
@@ -16,4 +17,5 @@ df["Age"] = df.Age.fillna(0)
 
 df = df.drop(columns=['Name', 'Ticket', 'Cabin'])
 
-df.to_csv("datasets/features.csv")
+#df.to_csv("datasets/features.csv")
+df.to_csv("datasets/features_test.csv")
