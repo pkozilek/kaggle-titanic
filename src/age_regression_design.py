@@ -32,12 +32,13 @@ gamma = 3.9810717055349695e-05
 
 svr_pipeline = Pipeline([
     ('scaler', StandardScaler()), 
-    ('regressor', svm.SVR(C=C, gamma=gamma))
+    ('regressor', svm.SVR())
+    #('regressor', svm.SVR(C=C, gamma=gamma))
 ])
 
 svr_pipeline.fit(features, labels)
 
-joblib.dump(svr_pipeline, 'models/age_regressor.pkl', compress=9)
+joblib.dump(svr_pipeline, 'models/age_regressor_02.pkl', compress=9)
 
 end = time.time()
 
@@ -62,7 +63,7 @@ end = time.time()
 # result_df = result_df.transpose()
 # result_df.columns = ['C', 'gamma', 'RMSE']
 
-# result_df.to_csv('results/age_regression/SVR_01.csv')
+# result_df.to_csv('results/age_regression/SVR_02.csv')
 
 # heatmap = g.heatmap(
 #     x=C_range, 

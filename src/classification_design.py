@@ -8,6 +8,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn import svm
 import functions.graphs as g
 import joblib
+from sklearn import tree
 
 start = time.time() 
 
@@ -16,24 +17,24 @@ features = data.drop(columns=['Survived'])
 labels = np.ravel(data[['Survived']])
 
 # Optimun SVM parameters
-# C = 77.7867, gamma = 0.01189
-
+# 1 - C = 77.7867, gamma = 0.01189
+# 2 - C = 1.2222222222222223, gamma =  0.0488889
 svc_pipeline = Pipeline([
     ('scaler', StandardScaler()), 
-    ('regressor', svm.SVC(C = 77.7867, gamma = 0.01189))
+    ('regressor', svm.SVC(C = 1.2222222222222223, gamma =  0.0488889))
 ])
 
 svc_pipeline.fit(features, labels)
 
-joblib.dump(svc_pipeline, 'models/svm_survivor_classification.pkl', compress=9)
+joblib.dump(svc_pipeline, 'models/svm_survivor_classification_02.pkl', compress=9)
 
 
-### Parameter Optimization ###
+## Parameter Optimization ###
 
-# # C_range = np.logspace(0, 2, 10)
-# # gamma_range = np.logspace(-4, -2, 6)
-# C_range = np.linspace(0.01, 700, 10)
-# gamma_range = np.linspace(0.001, 0.05, 10)
+# #C_range = np.logspace(0, 2, 10)
+# #gamma_range = np.logspace(-3, 0, 10)
+# C_range = np.linspace(1, 3, 10)
+# gamma_range = np.linspace(0.01, 0.06, 10)
 # print(C_range, gamma_range)
 # param_grid = [dict(regressor__gamma=gamma_range, regressor__C=C_range)]
 # cv = ShuffleSplit(n_splits=3, test_size=0.2, random_state=42)
