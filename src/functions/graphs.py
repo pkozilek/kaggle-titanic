@@ -60,6 +60,25 @@ def scatterplot(x=[], y=[], labels=[], x_jitter=False, y_jitter=False,
     return fig
 
 
+def heatmap(x, y, z, title='', xaxis_title='', yaxis_title=''):
+    fig = go.Figure(
+        data=go.Heatmap(
+            dict(
+                x=x,
+                y=y,
+                z=z
+            ),
+            colorscale='rdylgn'
+        )
+    )
+    fig.update_layout(
+        title=title,
+        xaxis_title_text=xaxis_title,
+        yaxis_title_text=yaxis_title
+    )
+    return fig
+
+
 def add_jitter(data=[], jitter=0):
     jittered = []
     for num in data:
